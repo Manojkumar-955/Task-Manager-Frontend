@@ -227,7 +227,7 @@ const Dashboard = () => {
                       </p>
 
                       <span
-                        className={`text-xs font-semibold px-3 py-1 flex self-start rounded-full ${
+                        className={`text-xs w-[100px] font-semibold px-3 py-1 flex self-start rounded-full ${
                           task.status === "completed"
                             ? "bg-green-100 text-green-700"
                             : task.status === "in-progress"
