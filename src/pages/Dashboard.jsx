@@ -17,7 +17,7 @@ const Dashboard = () => {
   const [editStatus, setEditStatus] = useState("pending");
 
   const token = localStorage.getItem("token");
-  const user_name = localStorage.getItem('user_name');
+  const user_name = localStorage.getItem("user_name");
 
   /* ================= FETCH TASKS ================= */
   const fetchTasks = async () => {
@@ -54,7 +54,7 @@ const Dashboard = () => {
         { title: newTitle },
         { headers: { Authorization: `Bearer ${token}` } },
       );
-      alert(res.data.message)
+      alert(res.data.message);
 
       setTasks((prev) => [res.data.task, ...prev]);
       setNewTitle("");
@@ -114,11 +114,11 @@ const Dashboard = () => {
     }
   };
   useEffect(() => {
-  const totalPages = Math.ceil(tasks.length / ITEMS_PER_PAGE);
-  if (currentPage > totalPages) {
-    setCurrentPage(totalPages || 1);
-  }
-}, [tasks, currentPage]);
+    const totalPages = Math.ceil(tasks.length / ITEMS_PER_PAGE);
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages || 1);
+    }
+  }, [tasks, currentPage]);
 
   /* ================= PAGINATION ================= */
   const totalPages = Math.ceil(tasks.length / ITEMS_PER_PAGE);
@@ -130,36 +130,36 @@ const Dashboard = () => {
     <div className="h-screen bg-gray-100 overflow-hidden">
       {/* ================= NAVBAR ================= */}
       <nav className="fixed top-0 left-0 right-0 h-16 bg-white border-b shadow-sm z-50">
-  <div className="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
-    {/* App Name */}
-    <h1 className="text-xl font-bold text-blue-600">Task Manager</h1>
+        <div className="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
+          {/* App Name */}
+          <h1 className="text-xl font-bold text-blue-600">Task Manager</h1>
 
-    {/* Right Actions */}
-    <div className="flex items-center gap-6">
-      {/* Profile */}
-      <div className="flex items-center gap-3">
-        <div className="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
-          <CgProfile size={22} />
+          {/* Right Actions */}
+          <div className="flex items-center gap-6">
+            {/* Profile */}
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                <CgProfile size={22} />
+              </div>
+
+              <span className="text-sm font-medium text-gray-700">
+                {user_name || "User"}
+              </span>
+            </div>
+
+            {/* Logout */}
+            <button
+              onClick={() => {
+                localStorage.clear();
+                window.location.href = "/";
+              }}
+              className="text-sm px-4 py-2 rounded-md bg-red-500 text-white hover:bg-red-600 transition"
+            >
+              Logout
+            </button>
+          </div>
         </div>
-
-        <span className="text-sm font-medium text-gray-700">
-          {user_name || "User"}
-        </span>
-      </div>
-
-      {/* Logout */}
-      <button
-        onClick={() => {
-          localStorage.clear();
-          window.location.href = "/";
-        }}
-        className="text-sm px-4 py-2 rounded-md bg-red-500 text-white hover:bg-red-600 transition"
-      >
-        Logout
-      </button>
-    </div>
-  </div>
-</nav>
+      </nav>
 
       {/* ================= MAIN CONTENT ================= */}
       <div className="pt-20 h-full flex justify-center">
@@ -198,14 +198,14 @@ const Dashboard = () => {
                 <p className="text-center text-gray-500">Loading tasks...</p>
               ) : paginatedTasks.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full text-center text-gray-500">
-  <div className="text-5xl mb-4">📝</div>
-  <h3 className="text-lg font-semibold text-gray-700">
-    No tasks yet
-  </h3>
-  <p className="text-sm">
-    Add a task to start organizing your work
-  </p>
-</div>
+                  <div className="text-5xl mb-4">📝</div>
+                  <h3 className="text-lg font-semibold text-gray-700">
+                    No tasks yet
+                  </h3>
+                  <p className="text-sm">
+                    Add a task to start organizing your work
+                  </p>
+                </div>
               ) : (
                 paginatedTasks.map((task) => (
                   <div
@@ -216,7 +216,7 @@ const Dashboard = () => {
                     <div>
                       <p
                         className={`font-medium flex self-start ${
-                          task.status === "completed"
+                          task.status === "Completed"
                             ? "line-through text-gray-400"
                             : task.status === "in-progress"
                               ? "text-blue-700"
@@ -228,14 +228,14 @@ const Dashboard = () => {
 
                       <span
                         className={`text-xs w-[100px] font-semibold px-3 py-1 flex self-start rounded-full ${
-                          task.status === "completed"
+                          task.status === "Completed"
                             ? "bg-green-100 text-green-700"
                             : task.status === "in-progress"
                               ? "bg-yellow-100 text-yellow-700"
                               : "bg-gray-100 text-gray-600"
                         }`}
                       >
-                        {task.status === "completed"
+                        {task.status === "Completed"
                           ? "Completed"
                           : task.status === "in-progress"
                             ? "In Progress"
@@ -311,7 +311,7 @@ const Dashboard = () => {
             >
               <option value="pending">Pending</option>
               <option value="in-progress">In Progress</option>
-              <option value="completed">Completed</option>
+              <option value="Completed">Completed</option>
             </select>
 
             <div className="flex justify-end gap-3">
